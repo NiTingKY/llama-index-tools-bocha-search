@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.2.1",
+    "ruff>=0.11.11",
+]
+
+[project]
+name = "llama-index-tools-bocha-search"
+version = "0.1.0"
+description = "LlamaIndex ToolSpec integration for Bocha Web Search"
+authors = [{name = "Bocha Search Contributors"}]
+requires-python = ">=3.10,<4.0"
+readme = "README.md"
+license = "MIT"
+keywords = ["llama-index", "bocha", "search", "web-search"]
+dependencies = [
+    "llama-index-core>=0.13.0,<0.15",
+    "requests>=2.28.0,<3",
+]
+
+[tool.hatch.build.targets.sdist]
+include = ["llama_index/"]
+exclude = ["**/BUILD"]
+
+[tool.hatch.build.targets.wheel]
+include = ["llama_index/"]
+exclude = ["**/BUILD"]
+
+[tool.llamahub]
+contains_example = false
+import_path = "llama_index.tools.bocha_search"
+
+[tool.llamahub.class_authors]
+BochaSearchToolSpec = "bocha-search-contributors"
+
+[tool.ruff]
+line-length = 88
